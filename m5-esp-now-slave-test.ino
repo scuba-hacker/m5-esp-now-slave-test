@@ -88,7 +88,8 @@ void setup() {
   // init the text buffer display and print welcome text on the display
   Serial.printf("textsize=%i",M5.Lcd.textsize);
   tb_display_init(screen_orientation,M5.Lcd.textsize);
-  tb_display_print_String("M5StickC-Plus-Textbuffer-Display - Slave espNOW");
+
+  tb_display_print_String("Mercator Origins - Slave espNOW Testbed");
 
   Serial.begin(115200);
   Serial.println("ESPNow/Basic/Slave Example");
@@ -114,8 +115,8 @@ void OnDataRecv(const uint8_t *mac_addr, const uint8_t *data, int data_len) {
   Serial.print("Last Packet Recv Data: "); Serial.println(*data);
   Serial.println("");
 
-  tb_display_print_String("Last Packet Recv from: "); 
-  tb_display_print_String(macStr);
+//  tb_display_print_String("Last Packet Recv from: "); 
+//  tb_display_print_String(macStr);
   tb_display_print_String("Last Packet Recv Data: "); 
   tb_display_print_String(*data);
   tb_display_print_String("\n");
