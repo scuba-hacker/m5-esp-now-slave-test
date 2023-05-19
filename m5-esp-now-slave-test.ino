@@ -106,6 +106,8 @@ void setup() {
   esp_now_register_recv_cb(OnDataRecv);
 }
 
+char buffer[100];
+
 // callback when data is recv from Master
 void OnDataRecv(const uint8_t *mac_addr, const uint8_t *data, int data_len) {
   char macStr[18];
@@ -118,7 +120,9 @@ void OnDataRecv(const uint8_t *mac_addr, const uint8_t *data, int data_len) {
 //  tb_display_print_String("Last Packet Recv from: "); 
 //  tb_display_print_String(macStr);
   tb_display_print_String("Last Packet Recv Data: "); 
-  tb_display_print_String(*data);
+
+  sprintf(buffer, "'%c' ",*data);
+  tb_display_print_String(buffer);
   tb_display_print_String("\n");
   
 }
