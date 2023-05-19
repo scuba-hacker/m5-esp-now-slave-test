@@ -89,7 +89,11 @@ void setup() {
   Serial.printf("textsize=%i",M5.Lcd.textsize);
   tb_display_init(screen_orientation,M5.Lcd.textsize);
 
-  tb_display_print_String("Mercator Origins - Slave espNOW Testbed");
+  tb_display_print_String("Mercator Origins - Slave ESPNow Testbed\n");
+  delay(1000);
+  tb_display_print_String("Wait 15 seconds before ESPNow startup.");
+  delay(15000);
+  tb_display_print_String("ESPNow starting up...");
 
   Serial.begin(115200);
   Serial.println("ESPNow/Basic/Slave Example");
