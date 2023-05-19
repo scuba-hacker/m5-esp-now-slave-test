@@ -31,6 +31,8 @@
 
 #include <M5StickCPlus.h>
 
+#include "tb_display.h"
+
 #include <esp_now.h>
 #include <WiFi.h>
 
@@ -65,12 +67,28 @@ void configDeviceAP() {
   }
 }
 
+// screen Rotation values:
+// 1 = Button right
+// 2 = Button above
+// 3 = Button left
+// 4 = Button below
+
+uint8_t screen_orientation = 3;
+
+uint8_t chosenTextSize = 2;
+
+uint16_t packetsSent = 0;
+uint16_t packetsReceived = 0;
+
 void setup() {
   M5.begin();
 
-  M5.Lcd.setCursor(55, 5);
-  M5.Lcd.setTextSize(4);
-  M5.Lcd.printf("Slave espNOW\n");
+  M5.Lcd.setTextSize(chosenTextSize);
+
+  // init the text buffer display and print welcome text on the display
+  Serial.printf("textsize=%i",M5.Lcd.textsize);
+  tb_display_init(screen_orientation,M5.Lcd.textsize);
+  tb_display_print_String("M5StickC-Plus-Textbuffer-Display - Slave espNOW");
 
   Serial.begin(115200);
   Serial.println("ESPNow/Basic/Slave Example");
@@ -95,6 +113,13 @@ void OnDataRecv(const uint8_t *mac_addr, const uint8_t *data, int data_len) {
   Serial.print("Last Packet Recv from: "); Serial.println(macStr);
   Serial.print("Last Packet Recv Data: "); Serial.println(*data);
   Serial.println("");
+
+  tb_display_print_String("Last Packet Recv from: "); 
+  tb_display_print_String(macStr);
+  tb_display_print_String("Last Packet Recv Data: "); 
+  tb_display_print_String(*data);
+  tb_display_print_String("\n");
+  
 }
 
 void loop() {
