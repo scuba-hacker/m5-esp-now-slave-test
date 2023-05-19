@@ -75,7 +75,7 @@ void configDeviceAP() {
 
 uint8_t screen_orientation = 3;
 
-uint8_t chosenTextSize = 2;
+uint8_t chosenTextSize = 1;
 
 uint16_t packetsSent = 0;
 uint16_t packetsReceived = 0;
