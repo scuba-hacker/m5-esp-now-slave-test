@@ -1,3 +1,12 @@
+// Slightly adapted by Mark B. Jones - Scuba Hacker - for underwater testing of ESPNow
+// Date: 20th May 2023
+// https://github.com/scuba-hacker
+// Original Authorship notice and instructions below.
+// Thank you Arvind!
+//
+// Thank you also to Hague Nusseck @ electricidea for the M5 Stick C Text Buffer Scroller
+// https://github.com/electricidea/M5StickC-TB_Display
+
 /**
    ESPNOW - Basic communication - Slave
    Date: 26th September 2017
@@ -82,6 +91,8 @@ uint16_t packetsReceived = 0;
 
 void setup() {
   M5.begin();
+
+  M5.Axp.ScreenBreath(14);             // max brightness
 
   M5.Lcd.setTextSize(chosenTextSize);
 
